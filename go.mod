@@ -15,7 +15,7 @@ require (
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rusq/dlog v1.3.3 // indirect
-	github.com/slack-go/slack v0.10.2 // indirect
+	github.com/slack-go/slack v0.11.0 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect
 	golang.org/x/time v0.11.0 // indirect
 )
