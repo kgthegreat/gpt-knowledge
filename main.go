@@ -33,10 +33,25 @@ func fetchSlackMessages(channelID, fromDate, toDate string) error {
 		return fmt.Errorf("invalid to-date format: %v", err)
 	}
 
-	// Use slackdump to fetch messages
-	// This is a placeholder for the actual slackdump usage
-	fmt.Printf("Fetching messages from channel %s in org %s from %s to %s\n", channelID, org, from, to)
-	// Implement the actual slackdump logic here
+	// Configure slackdump options
+	options := slackdump.Options{
+		Channel:   channelID,
+		From:      from,
+		To:        to,
+		Org:       org,
+		LoginType: slackdump.LoginBrowser,
+	}
+
+	// Fetch messages using slackdump
+	messages, err := slackdump.FetchMessages(options)
+	if err != nil {
+		return fmt.Errorf("failed to fetch messages: %v", err)
+	}
+
+	// Print fetched messages
+	for _, message := range messages {
+		fmt.Printf("[%s] %s: %s\n", message.Timestamp, message.User, message.Text)
+	}
 
 	return nil
 }
