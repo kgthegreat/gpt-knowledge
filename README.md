@@ -1,2 +1,1 @@
-# gpt-knowledge
-Helps build knowledge for a custom gpt
+Helps build knowledge for custom GPTs
