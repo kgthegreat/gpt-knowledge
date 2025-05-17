@@ -4,7 +4,7 @@ go 1.23.8
 
 require (
 	github.com/joho/godotenv v1.4.0
-	github.com/rusq/slackdump v1.0.0
+	github.com/rusq/slackdump v1.1.0
 )
 
 require (
