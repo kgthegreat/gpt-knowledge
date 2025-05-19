@@ -33,10 +33,15 @@ def convert_doc_to_docx(input_folder, output_folder):
             print(f"Converted: {filename}")
 
 def merge_docx_files(input_folder, output_file):
+    def save_and_reset(doc, file_name, token_count):
+        doc.save(file_name)
+        print(f"🎉 Saved file: '{file_name}' with ~{token_count} tokens.")
+        return Document(), 0
     merged_doc = Document()
     total_tokens = 0
 
-    for filename in sorted(os.listdir(input_folder)):
+    file_index = 1
+    current_output_file = output_file
         if filename.endswith(".docx"):
             path = os.path.join(input_folder, filename)
             doc = Document(path)
@@ -45,7 +50,9 @@ def merge_docx_files(input_folder, output_file):
 
             if total_tokens + tokens > TOKEN_LIMIT:
                 print(f"⚠️ Skipping {filename}: exceeds token limit.")
-                continue
+                merged_doc, total_tokens = save_and_reset(merged_doc, current_output_file, total_tokens)
+                file_index += 1
+                current_output_file = f"merged_confluence_dp_{file_index}.docx"
 
             for para in doc.paragraphs:
                 merged_doc.add_paragraph(para.text)
@@ -58,8 +65,7 @@ def merge_docx_files(input_folder, output_file):
                 print(f"⛔ File size exceeded after {filename}. Stopping.")
                 return
 
-    merged_doc.save(output_file)
-    print(f"🎉 Final merged file: '{output_file}' with ~{total_tokens} tokens.")
+    merged_doc, total_tokens = save_and_reset(merged_doc, current_output_file, total_tokens)
 
 # === RUN PROCESS ===
 convert_doc_to_docx(INPUT_FOLDER, TEMP_DOCX_FOLDER)
