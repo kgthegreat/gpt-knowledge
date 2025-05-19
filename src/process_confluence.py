@@ -32,7 +32,7 @@ def convert_doc_to_docx(input_folder, output_folder):
             ], check=True)
             print(f"Converted: {filename}")
 
-def merge_docx_files(input_folder, output_file):
+def merge_docx_files(input_folder, output_folder, output_file):
     def save_and_reset(doc, file_name, token_count):
         doc.save(file_name)
         print(f"🎉 Saved file: '{file_name}' with ~{token_count} tokens.")
@@ -70,4 +70,4 @@ def merge_docx_files(input_folder, output_file):
 
 # === RUN PROCESS ===
 convert_doc_to_docx(INPUT_FOLDER, TEMP_DOCX_FOLDER)
-merge_docx_files(TEMP_DOCX_FOLDER, OUTPUT_FILE)
+merge_docx_files(TEMP_DOCX_FOLDER, OUTPUT_FOLDER, OUTPUT_FILE)
