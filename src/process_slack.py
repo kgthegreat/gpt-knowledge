@@ -93,6 +93,9 @@ def render_thread(messages, user_map):
     return thread_blocks
 
 def process_all_files():
+    if not os.path.exists(INPUT_FOLDER):
+        print(f"Error: The directory {INPUT_FOLDER} does not exist.")
+        return []
     all_threads = []
     for filename in sorted(os.listdir(INPUT_FOLDER)):
         if filename.endswith(".json"):
