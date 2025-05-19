@@ -6,10 +6,9 @@ from datetime import datetime
 from collections import defaultdict
 
 # === CONFIGURATION ===
-#INPUT_FOLDER = "/Users/kumargaurav/code/skyscanner/process-slack-archive/data/input/slackdump_20250514_105241/dancing-penguins"
-#OUTPUT_FOLDER = "/Users/kumargaurav/code/skyscanner/process-slack-archive/data/output/dp-markdown"
-INPUT_FOLDER = "../data/input/slackdump_20250514_105241/rts-queries"
-OUTPUT_FOLDER = "../data/output/slack/rts-markdown"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+INPUT_FOLDER = os.path.join(current_dir, '../data/input/slackdump_20250514_105241/rts-queries')
+OUTPUT_FOLDER = os.path.join(current_dir, '../data/output/slack/rts-markdown')
 
 MAX_FILE_SIZE = 512 * 1024 * 1024  # 512 MB
 MAX_TOKENS = 2_000_000
