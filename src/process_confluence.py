@@ -51,7 +51,7 @@ def merge_doc_files(input_folder, output_folder, output_file):
     for filename in sorted(os.listdir(input_folder)):
         if filename.endswith(".doc"):
             path = os.path.join(input_folder, filename)
-            text = read_doc_file(path)
+            text = read_docx_file(path)
             tokens = count_tokens(text)
 
             if total_tokens + tokens > TOKEN_LIMIT:
