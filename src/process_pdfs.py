@@ -34,12 +34,13 @@ def merge_pdfs(input_folder, output_folder, output_file):
                     break
                 writer.add_page(page)
                 total_tokens += tokens
-                if get_file_size_mb(current_output_file) > FILE_SIZE_LIMIT_MB:
-                    print(f"⛔ File size exceeded after {filename}. Stopping.")
-                    return
-
     with open(current_output_file, 'wb') as f:
         writer.write(f)
+
+    if get_file_size_mb(current_output_file) > FILE_SIZE_LIMIT_MB:
+        print(f"⛔ File size exceeded. The merged file is too large.")
+        return
+
     print(f"🎉 Merged PDF saved as '{current_output_file}' with ~{total_tokens} tokens.")
 
 if __name__ == "__main__":
