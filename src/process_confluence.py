@@ -41,7 +41,7 @@ def merge_docx_files(input_folder, output_file):
     total_tokens = 0
 
     file_index = 1
-    current_output_file = output_file
+    current_output_file = os.path.join(output_folder, output_file)
     for filename in sorted(os.listdir(input_folder)):
         if filename.endswith(".docx"):
             path = os.path.join(input_folder, filename)
@@ -53,7 +53,7 @@ def merge_docx_files(input_folder, output_file):
                 print(f"⚠️ Skipping {filename}: exceeds token limit.")
                 merged_doc, total_tokens = save_and_reset(merged_doc, current_output_file, total_tokens)
                 file_index += 1
-                current_output_file = f"merged_confluence_dp_{file_index}.docx"
+                current_output_file = os.path.join(output_folder, f"merged_confluence_dp_{file_index}.docx")
 
             for para in doc.paragraphs:
                 merged_doc.add_paragraph(para.text)
