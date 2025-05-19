@@ -8,7 +8,7 @@ from tiktoken import get_encoding
 INPUT_FOLDER = "../data/input/confluence/dp"
 OUTPUT_FOLDER = "../data/output/confluence/dp"
 
-TEMP_DOCX_FOLDER = "converted_docx"
+TEMP_DOCX_FOLDER = "../data/output/converted_docx"
 OUTPUT_FILE = "merged_confluence_dp.docx"
 TOKEN_LIMIT = 2_000_000
 FILE_SIZE_LIMIT_MB = 512
