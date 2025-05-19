@@ -22,13 +22,14 @@ def count_tokens(text):
 def get_file_size_mb(path):
     return os.path.getsize(path) / (1024 * 1024)
 
-def convert_doc_to_docx(input_folder, output_folder):
+def convert_doc_to_text(input_folder, output_folder):
     os.makedirs(output_folder, exist_ok=True)
     for filename in os.listdir(input_folder):
         if filename.endswith(".doc") and not filename.startswith("~$"):
             input_path = os.path.join(input_folder, filename)
+            output_path = os.path.join(output_folder, filename.replace('.doc', '.txt'))
             subprocess.run([
-                "soffice", "--headless", "--convert-to", "docx", "--outdir", output_folder, input_path
+                "unoconv", "-f", "txt", "-o", output_path, input_path
             ], check=True)
             print(f"Converted: {filename}")
 
@@ -69,5 +70,5 @@ def merge_docx_files(input_folder, output_folder, output_file):
     merged_doc, total_tokens = save_and_reset(merged_doc, current_output_file, total_tokens)
 
 # === RUN PROCESS ===
-convert_doc_to_docx(INPUT_FOLDER, TEMP_DOCX_FOLDER)
+convert_doc_to_text(INPUT_FOLDER, TEMP_DOCX_FOLDER)
 merge_docx_files(TEMP_DOCX_FOLDER, OUTPUT_FOLDER, OUTPUT_FILE)
