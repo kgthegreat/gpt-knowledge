@@ -42,6 +42,7 @@ def merge_docx_files(input_folder, output_file):
 
     file_index = 1
     current_output_file = output_file
+    for filename in sorted(os.listdir(input_folder)):
         if filename.endswith(".docx"):
             path = os.path.join(input_folder, filename)
             doc = Document(path)
