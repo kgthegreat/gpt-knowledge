@@ -61,8 +61,8 @@ def merge_docx_files(input_folder, output_folder, output_file):
             total_tokens += tokens
             print(f"✅ Added {filename} ({tokens} tokens). Total: {total_tokens}")
 
-            merged_doc.save(output_file)
-            if get_file_size_mb(output_file) > FILE_SIZE_LIMIT_MB:
+            merged_doc.save(current_output_file)
+            if get_file_size_mb(current_output_file) > FILE_SIZE_LIMIT_MB:
                 print(f"⛔ File size exceeded after {filename}. Stopping.")
                 return
 
