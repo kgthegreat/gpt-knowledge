@@ -1,6 +1,7 @@
 
 import os
-import pypandoc
+import subprocess
+from docx import Document
 from tiktoken import get_encoding
 
 # === CONFIGURATION ===
@@ -21,11 +22,19 @@ def count_tokens(text):
 def get_file_size_mb(path):
     return os.path.getsize(path) / (1024 * 1024)
 
-def read_doc_file(input_path):
-    return pypandoc.convert_file(input_path, 'plain', format='doc')
+def convert_doc_to_docx(input_folder, output_folder):
+    os.makedirs(output_folder, exist_ok=True)
+    for filename in os.listdir(input_folder):
+        if filename.endswith(".doc") and not filename.startswith("~$"):
+            input_path = os.path.join(input_folder, filename)
+            subprocess.run([
+                "unoconv", "-f", "docx", "-o", output_folder, input_path
+            ], check=True)
+            print(f"Converted: {filename}")
 
-def write_doc_file(output_path, content):
-    pypandoc.convert_text(content, 'doc', format='plain', outputfile=output_path)
+def read_docx_file(input_path):
+    doc = Document(input_path)
+    return "\n".join([p.text for p in doc.paragraphs])
 
 def merge_doc_files(input_folder, output_folder, output_file):
     def save_and_reset(content, file_name, token_count):
@@ -64,11 +73,5 @@ def merge_doc_files(input_folder, output_folder, output_file):
     merged_content, total_tokens = save_and_reset(merged_content, current_output_file, total_tokens)
 
 # === RUN PROCESS ===
-os.makedirs(OUTPUT_FOLDER, exist_ok=True)
-for filename in os.listdir(INPUT_FOLDER):
-    if filename.endswith(".doc") and not filename.startswith("~$"):
-        input_path = os.path.join(INPUT_FOLDER, filename)
-        output_path = os.path.join(OUTPUT_FOLDER, filename)
-        content = read_doc_file(input_path)
-        write_doc_file(output_path, content)
-        print(f"Processed: {filename}")
+convert_doc_to_docx(INPUT_FOLDER, TEMP_DOCX_FOLDER)
+merge_doc_files(TEMP_DOCX_FOLDER, OUTPUT_FOLDER, OUTPUT_FILE)
