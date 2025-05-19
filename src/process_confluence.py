@@ -5,10 +5,11 @@ from docx import Document
 from tiktoken import get_encoding
 
 # === CONFIGURATION ===
-INPUT_FOLDER = "../data/input/confluence/dp"
-OUTPUT_FOLDER = "../data/output/confluence/dp"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+INPUT_FOLDER = os.path.join(current_dir, '../data/input/confluence/dp')
+OUTPUT_FOLDER = os.path.join(current_dir, '../data/output/confluence/dp')
 
-TEMP_DOCX_FOLDER = "../data/output/converted_docx"
+TEMP_DOCX_FOLDER = os.path.join(current_dir, '../data/output/converted_docx')
 OUTPUT_FILE = "merged_confluence_dp.docx"
 TOKEN_LIMIT = 2_000_000
 FILE_SIZE_LIMIT_MB = 512
