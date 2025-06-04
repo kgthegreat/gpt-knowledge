@@ -8,7 +8,7 @@ def load_config(config_path):
 
 def run_repomix(repo_url, output_file, ignore_files):
     # Construct the repomix command
-    command = ["repomix", repo_url, "-o", output_file]
+    command = ["repomix", "--remote", repo_url, "-o", output_file]
     for ignore_file in ignore_files:
         command.extend(["--ignore", ignore_file])
     
