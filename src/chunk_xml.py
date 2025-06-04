@@ -16,11 +16,11 @@ def split_file(input_file, output_dir):
 
     os.makedirs(output_dir, exist_ok=True)
     tokens = content.split()
-    num_chunks = (len(tokens) + max_tokens - 1) // max_tokens
+    num_chunks = (len(tokens) + MAX_TOKENS - 1) // MAX_TOKENS
 
     for i in range(num_chunks):
-        start = i * max_tokens
-        end = start + max_tokens
+        start = i * MAX_TOKENS
+        end = start + MAX_TOKENS
         chunk_content = " ".join(tokens[start:end])
         chunk_file = os.path.join(output_dir, f"chunk_{i+1}.xml")
         with open(chunk_file, 'w') as chunk:
