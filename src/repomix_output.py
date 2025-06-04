@@ -26,7 +26,7 @@ def main():
     
     for repo_url in config['repositories']:
         repo_name = os.path.basename(repo_url).replace('.git', '')
-        output_file = os.path.join(output_directory, f"{repo_name}.txt")
+        output_file = os.path.join(output_directory, f"{repo_name}.xml")
         run_repomix(repo_url, output_file, config['ignore_files'])
 
 if __name__ == "__main__":
