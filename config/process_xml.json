@@ -1,0 +1,4 @@
+{
+    "input_file": "path/to/large.xml",
+    "output_directory": "path/to/output/directory"
+}

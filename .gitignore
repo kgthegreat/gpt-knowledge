@@ -28,5 +28,6 @@ go.work.sum
 data/input/
 data/output/
 config/repomix_config.json
+config/process_xml.json
 
 .DS_Store
