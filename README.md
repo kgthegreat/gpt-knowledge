@@ -29,3 +29,18 @@ python src/process_slack.py
 
 Both scripts assume Python 3.10+ and require `PyPDF2` for PDF processing.
 
+### repomix_output.py
+
+This script reads from a configuration file and runs the `repomix` command for each repository listed. The output for each repository is saved in the specified output directory.
+
+#### Usage
+
+1. Configure the `config/repomix_config.json` file with your repositories, output directory, and files to ignore.
+2. Run the script:
+
+   ```bash
+   python src/repomix_output.py
+   ```
+
+3. The output files will be named after each repository and saved in the specified output directory.
+

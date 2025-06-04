@@ -1,0 +1,11 @@
+{
+    "repositories": [
+        "https://github.com/user/repo1.git",
+        "https://github.com/user/repo2.git"
+    ],
+    "output_directory": "/absolute/path/to/output",
+    "ignore_files": [
+        "README.md",
+        ".gitignore"
+    ]
+}
