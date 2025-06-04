@@ -1,3 +1,4 @@
+import json
 import os
 import os
 
@@ -9,6 +10,10 @@ AVG_CHARS_PER_TOKEN = 4  # conservative
 def count_tokens(text):
     # Assuming a simple tokenization by splitting on whitespace
     return len(text.split())
+
+def load_config(config_path):
+    with open(config_path, 'r') as file:
+        return json.load(file)
 
 def split_file(input_file, output_dir):
     with open(input_file, 'r') as file:
@@ -27,8 +32,11 @@ def split_file(input_file, output_dir):
             chunk.write(chunk_content)
 
 def main():
-    input_file = 'path/to/large.xml'
-    output_dir = 'path/to/output/directory'
+    config_path = 'config/process_xml.json'
+    config = load_config(config_path)
+    
+    input_file = config['input_file']
+    output_dir = config['output_directory']
     
     split_file(input_file, output_dir)
 
