@@ -5,10 +5,12 @@
     "output_directory": "/Users/kumargaurav/code/skyscanner/flights-live-pricing/repomix-output",
     "ignore_files": [
         ".gitignore",
-		"query.json",
-		".txt",
-		".editorconfig",
-		"npst.json",
-		"gradlew"
+        "query.json",
+        ".txt",
+        ".editorconfig",
+        "npst.json",
+        "gradlew",
+        "*.html",
+        "*.js"
     ]
 }
