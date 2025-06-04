@@ -1,11 +1,14 @@
 {
     "repositories": [
-        "https://github.com/user/repo1.git",
-        "https://github.com/user/repo2.git"
+        "git@github.skyscannertools.net:carriers/carrier-service.git"
     ],
-    "output_directory": "/absolute/path/to/output",
+    "output_directory": "/Users/kumargaurav/code/skyscanner/flights-live-pricing/repomix-output",
     "ignore_files": [
-        "README.md",
-        ".gitignore"
+        ".gitignore",
+		"query.json",
+		".txt",
+		".editorconfig",
+		"npst.json",
+		"gradlew"
     ]
 }
