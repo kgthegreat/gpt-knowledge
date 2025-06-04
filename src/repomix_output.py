@@ -12,7 +12,9 @@ def run_repomix(repo_url, output_file, ignore_files):
     ignore_pattern = ",".join(ignore_files)
     command.extend(["-i", ignore_pattern])
     
-    # Execute the command
+    # Print the command for auditing
+    print("Running command:", " ".join(command))
+    
     subprocess.run(command, check=True)
 
 def main():
