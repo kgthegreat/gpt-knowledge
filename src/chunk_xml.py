@@ -1,15 +1,16 @@
-import json
+import os
 import os
 
-def load_chunk_config(config_path):
-    with open(config_path, 'r') as file:
-        return json.load(file)
+# Constants for chunking
+MAX_FILE_SIZE = 512 * 1024 * 1024  # 512 MB
+MAX_TOKENS = 2_000_000
+AVG_CHARS_PER_TOKEN = 4  # conservative
 
 def count_tokens(text):
     # Assuming a simple tokenization by splitting on whitespace
     return len(text.split())
 
-def split_file(input_file, output_dir, max_tokens):
+def split_file(input_file, output_dir):
     with open(input_file, 'r') as file:
         content = file.read()
 
@@ -26,14 +27,10 @@ def split_file(input_file, output_dir, max_tokens):
             chunk.write(chunk_content)
 
 def main():
-    config_path = 'config/chunk.json'
-    config = load_chunk_config(config_path)
+    input_file = 'path/to/large.xml'
+    output_dir = 'path/to/output/directory'
     
-    input_file = config['input_file']
-    output_dir = config['output_directory']
-    max_tokens = config['max_chunk_size_tokens']
-    
-    split_file(input_file, output_dir, max_tokens)
+    split_file(input_file, output_dir)
 
 if __name__ == "__main__":
     main()
