@@ -33,7 +33,7 @@ def main():
     output_dir = config['output_directory']
     max_tokens = config['max_chunk_size_tokens']
     
-    split_file(input_file, output_dir, max_size)
+    split_file(input_file, output_dir, max_tokens)
 
 if __name__ == "__main__":
     main()
