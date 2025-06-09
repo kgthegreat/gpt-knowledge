@@ -4,7 +4,7 @@ import os
 
 # Constants for chunking
 MAX_FILE_SIZE = 512 * 1024 * 1024  # 512 MB
-MAX_TOKENS = 2_000_000
+MAX_TOKENS = 1_000_000
 AVG_CHARS_PER_TOKEN = 4  # conservative
 
 def count_tokens(text):
