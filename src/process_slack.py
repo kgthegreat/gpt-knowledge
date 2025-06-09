@@ -107,6 +107,7 @@ def process_all_files():
     return all_threads
 
 def batch_and_save(threads):
+    input_folder_name = os.path.basename(os.path.normpath(INPUT_FOLDER))
     os.makedirs(OUTPUT_FOLDER, exist_ok=True)
     current_batch = []
     current_size = 0
@@ -114,7 +115,7 @@ def batch_and_save(threads):
     file_index = 1
 
     def write_batch(index, content):
-        output_path = os.path.join(OUTPUT_FOLDER, f"slack_batch_{index:02}.md")
+        output_path = os.path.join(OUTPUT_FOLDER, f"{input_folder_name}_batch_{index:02}.md")
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(content)
 
